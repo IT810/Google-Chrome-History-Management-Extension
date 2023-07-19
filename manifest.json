@@ -1,0 +1,23 @@
+{
+    "name": "Google Chrome History Management",
+    "version": "0.0.1",
+    "manifest_version": 3,
+    "description": "The extension helps you manage google chrome history quickly and effectively.",
+    "background": {
+        "service_worker": "background.js"
+    },
+    "action": {
+        "default_title": "Google Chrome History Management",
+        "default_popup": "popups/popup.html",
+        "default_icon": {
+            "32": "icons/icon.png"
+        }
+    },
+    "icons": {
+        "32": "icons/icon.png"
+    },
+    "permissions": [
+        "history",
+        "alarms"
+    ]
+}

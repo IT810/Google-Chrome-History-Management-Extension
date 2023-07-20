@@ -1,28 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self'">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="/popups/style.css">
-  </head>
-  <body>
-    <div class="loading-layout" id="loading" style="display: none;">
-      <div class="loader"></div>
-      <p class="loading-text">Loading...</p>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self'">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="/popups/style.css">
+</head>
+
+<body>
+  <div class="loading-layout" id="loading" style="display: none;">
+    <div class="loader"></div>
+    <p class="loading-text">Loading...</p>
+  </div>
+  <div>
+    <div id="header">
+      <h3>Google Chrome History Management</h3>
     </div>
-    <div>
-      <div id="header">
-        <h2>Google Chrome History Management</h2>
+    <div class="tabs">
+      <div class="tab-buttons">
+        <button class="tab-button active" data-tab="tab1"><i class="fa fa-list fa-lg"></i></button>
+        <button class="tab-button" data-tab="tab2"><i class="fas fa-cog fa-lg"></i></button>
       </div>
-      <div class="content">
-        <ul id="history-list"></ul>
+      <div class="tab-contents">
+        <div id="tab1" class="tab-content">
+          <div class="content" id="content-1">
+            <ul id="history-list"></ul>
+          </div>
+          <p id="qty"></p>
+        </div>
+        <div id="tab2" class="tab-content">
+          <div class="content">
+            <div class="container">
+              <img src="/icons/bg.png" alt="No Data">
+            </div>
+          </div>
+        </div>
       </div>
-      <footer>
-        <p id="qty"></p>
-      </footer>
     </div>
-    <script src="/popups/script.js"></script>
-  </body>
+    <footer>
+      <p>Version 0.0.1</p>
+    </footer>
+  </div>
+  <script src="/popups/script.js"></script>
+</body>
+
 </html>

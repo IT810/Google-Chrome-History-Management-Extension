@@ -1,28 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
 body {
+    font-family: "Open Sans", sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    background: #f5f5f5;
+    color: #6d6d6d;
     margin: 0;
     padding: 0;
+    display: block;
+    text-rendering: optimizeLegibility;
+    overflow: hidden;
 }
 
 #header {
-    position: fixed;
-    top: 0;
-    left: 0;
     width: 100%;
     padding: 5px;
-    background-color: #333;
-    color: white;
+    background-color: rgb(29, 161, 242);
+    color: #fff;
 }
 
-#header h2 {
+#header h3 {
     text-align: center;
 }
 
 footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
     width: 100%;
-    background-color: #333;
+    background-color: rgb(29, 161, 242);
     color: #fff;
     text-align: center;
     padding: 5px;
@@ -31,27 +38,20 @@ footer {
 footer p {
     text-align: center;
     font-weight: bold;
-    font-size: 12px;
-}
-
-.content {
-    min-width: 600px;
-    margin-top: 50px;
-    padding: 5px;
-    margin-bottom: 40px;
+    font-size: 13px;
 }
 
 #history-list {
     list-style-type: none;
     padding: 0;
+    margin: 0;
 }
 
 #history-list li {
-    background-color: #f2f2f2;
-    padding: 10px;
+    background-color: #fff;
+    padding: 5px 15px;
     margin-bottom: 5px;
     border-radius: 5px;
-    border: 1px solid #ccc;
     display: flex;
     justify-content: space-between;
 }
@@ -66,7 +66,7 @@ footer p {
 }
 
 .title {
-    font-weight: bold;
+    font-weight: 500;
     text-overflow: ellipsis;
     overflow: hidden;
     width: 300px;
@@ -112,6 +112,7 @@ footer p {
     font-size: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    text-decoration: none;
 }
 
 .icon-button-1 {
@@ -173,4 +174,74 @@ footer p {
 
 .loading-text {
     margin-top: 10px;
+}
+
+a i {
+    pointer-events: none;
+}
+
+.tabs {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.tab-buttons {
+    background-color: #e8e8e8;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.tab-button {
+    background-color: #f1f1f1;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 10px;
+    width: 50%;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.tab-button:hover {
+    background-color: #ddd;
+}
+
+.tab-button.active {
+    background-color: #ccc;
+}
+
+.tab-contents {
+    background-color: #9cdbe9;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content h2 {
+    margin-top: 0;
+}
+
+#qty{
+    text-align: center;
+    font-weight: bold;
+    color: #000;
+}
+
+.content {
+    min-width: 600px;
+    padding: 5px 5px 0px 5px;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container img{
+    padding: 100px;
+    height: 150px;
 }

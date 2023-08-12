@@ -1,6 +1,14 @@
 function displayHistory(historyItems) {
     var ul = document.getElementById("history-list");
+    if(ul === null){
+        var dataList = document.getElementById("content-1");
+        dataList.innerHTML = '';
+        ul = document.createElement("ul");
+        ul.setAttribute("id", "history-list");
+        dataList.appendChild(ul);
+    }
     var qty = document.getElementById("qty");
+    ul.innerHTML = "";
     qty.innerText = "";
     if (historyItems.length > 0) {
         historyItems.slice(0, 5).forEach(function (item) {
@@ -76,15 +84,29 @@ function getTimeAgo(timestamp) {
     return Math.floor(seconds) + " second" + (seconds === 1 ? "" : "s") + " ago";
 }
 
-document.addEventListener("click", function (event) {
-    if (event.target.classList.contains("icon-button")) {
-        var historyEntryId = event.target.parentNode.getAttribute("data-id");
-        removeHistoryById(historyEntryId);
-    }
+document.addEventListener('DOMContentLoaded', function () {
 
-    if (event.target.classList.contains("delete-all-button")) {
-        removeAllHistory();
-    }
+    const searchInput = document.getElementById('searchInput');
+    searchInput.addEventListener('keypress', function (event) {
+        if (event.key === 'Enter') {
+            const searchTerm = searchInput.value.trim();
+            getData(searchTerm);
+        }
+    });
+
+    document.addEventListener("click", function (event) {
+
+        // click button for delete a history
+        if (event.target.classList.contains("icon-button")) {
+            var historyEntryId = event.target.parentNode.getAttribute("data-id");
+            removeHistoryById(historyEntryId);
+        }
+
+        // click button for delete all histories
+        if (event.target.classList.contains("delete-all-button")) {
+            removeAllHistory();
+        }
+    });
 });
 
 function removeHistoryById(historyEntryId) {
@@ -93,29 +115,17 @@ function removeHistoryById(historyEntryId) {
         if (historyEntry) {
             // Call the deleteUrl function to remove the history entry
             chrome.history.deleteUrl({ url: historyEntry.url }, function () {
-                toggleElement();
-                setTimeout(function () {
-                    var ul = document.getElementById("history-list");
-                    ul.innerHTML = "";
-                    getData();
-                    toggleElement();
-                }, 500);
+                getData('');
             });
         }
     });
 }
 
-function removeAllHistory(){
+function removeAllHistory() {
     chrome.history.search({ text: "", maxResults: 0 }, function (results) {
         if (results.length > 0) {
             chrome.history.deleteAll();
-            toggleElement();
-            setTimeout(function () {
-                var ul = document.getElementById("history-list");
-                ul.innerHTML = "";
-                getData();
-                toggleElement();
-            }, 500);
+            getData('');
         }
     });
 }
@@ -129,13 +139,18 @@ function toggleElement() {
     }
 }
 
-function getData() {
-    chrome.history.search({ text: '', maxResults: 0 }, function (historyItems) {
-        displayHistory(historyItems);
-    });
+function getData(keyword) {
+    toggleElement();
+    setTimeout(function () {
+        chrome.history.search({ text: keyword, maxResults: 0 }, function (historyItems) {
+            displayHistory(historyItems);
+            console.log(historyItems);
+        });
+        toggleElement();
+    }, 500);
 }
 
-getData();
+getData('');
 
 function openTab(evt) {
     var i, tabContent, tabButton;

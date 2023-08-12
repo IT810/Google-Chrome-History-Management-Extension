@@ -214,6 +214,7 @@ a i {
 
 .tab-contents {
     background-color: #9cdbe9;
+    height: 450px;
 }
 
 .tab-content {
@@ -244,4 +245,21 @@ a i {
 .container img{
     padding: 100px;
     height: 150px;
+}
+
+.delete-all-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f44336;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    width: 100%;
+    margin-bottom: 5px;
+    font-weight: bold;
 }

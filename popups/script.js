@@ -39,6 +39,17 @@ function displayHistory(historyItems) {
     }
 }
 
+function generateData() {
+    var dataList = document.getElementById("content-1");
+
+    // Kiểm tra nếu danh sách không có dữ liệu
+    dataList.innerHTML = "";
+    dataList.innerHTML = `
+        <div class="container">
+        <img src="/icons/bg.png" alt="No Data">
+        </div>`;
+}
+
 function getTimeAgo(timestamp) {
     var seconds = Math.floor((new Date() - timestamp) / 1000);
     var interval = Math.floor(seconds / 31536000);
@@ -70,6 +81,10 @@ document.addEventListener("click", function (event) {
         var historyEntryId = event.target.parentNode.getAttribute("data-id");
         removeHistoryById(historyEntryId);
     }
+
+    if (event.target.classList.contains("delete-all-button")) {
+        removeAllHistory();
+    }
 });
 
 function removeHistoryById(historyEntryId) {
@@ -79,7 +94,6 @@ function removeHistoryById(historyEntryId) {
             // Call the deleteUrl function to remove the history entry
             chrome.history.deleteUrl({ url: historyEntry.url }, function () {
                 toggleElement();
-
                 setTimeout(function () {
                     var ul = document.getElementById("history-list");
                     ul.innerHTML = "";
@@ -87,6 +101,21 @@ function removeHistoryById(historyEntryId) {
                     toggleElement();
                 }, 500);
             });
+        }
+    });
+}
+
+function removeAllHistory(){
+    chrome.history.search({ text: "", maxResults: 0 }, function (results) {
+        if (results.length > 0) {
+            chrome.history.deleteAll();
+            toggleElement();
+            setTimeout(function () {
+                var ul = document.getElementById("history-list");
+                ul.innerHTML = "";
+                getData();
+                toggleElement();
+            }, 500);
         }
     });
 }
@@ -107,7 +136,6 @@ function getData() {
 }
 
 getData();
-
 
 function openTab(evt) {
     var i, tabContent, tabButton;
@@ -133,15 +161,4 @@ document.getElementsByClassName("tab-button")[0].classList.add("active");
 var tabButtons = document.getElementsByClassName("tab-button");
 for (var i = 0; i < tabButtons.length; i++) {
     tabButtons[i].addEventListener("click", openTab);
-}
-
-function generateData() {
-    var dataList = document.getElementById("content-1");
-
-    // Kiểm tra nếu danh sách không có dữ liệu
-    dataList.innerHTML = "";
-    dataList.innerHTML = `
-        <div class="container">
-        <img src="/icons/bg.png" alt="No Data">
-        </div>`;
 }

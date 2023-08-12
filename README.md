@@ -1,6 +1,6 @@
 # Google-Chrome-History-Management-Extension
 
-Manage your google chorme history.
+Manage your google chrome history.
 
 ## Demo
 
